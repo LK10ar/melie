@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mélie — Pastelería de Muffins Artesanales en Burdeos</title>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;800&family=Outfit:wght@300;400;600;800&family=Inter:wght@500&family=JetBrains+Mono:wght@400;500&family=Yellowtail&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'dazzle Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local(Arial);font-weight:700;ascent-override:75.41%;descent-override:9.16%;line-gap-override:4.93%;size-adjust:141.88%}
+:root{--paper:#f6efe6;--bur:#63001e;--burdk:#3d0012;--burlt:#8b1c3c;--ink:#2a0d10;--pk:#ff99d3;--pkl:#ffc5e6;--mauve:color-mix(in srgb,#2a0d10 75%,transparent);--tint:color-mix(in srgb,#ffc5e6 55%,transparent);--cream:#f6efe6;color-scheme:light;
+--f:'Outfit','Arial Black',system-ui,sans-serif;--d:'League Spartan','dazzle Fallback',Arial,'Liberation Sans',Helvetica,sans-serif;--m:'JetBrains Mono',ui-monospace,monospace;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#63001e #f6efe6;background:#f6efe6}::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#f6efe6}::-webkit-scrollbar-button{display:none;width:0;height:0}::-webkit-scrollbar-thumb{background:#63001e;border-radius:3px}
+body{background:var(--paper);color:var(--bur);font-family:var(--f);font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+h1,h2,h3,h4{font-family:var(--d);font-weight:800;text-transform:uppercase;letter-spacing:.01em;line-height:.9}
+.out{-webkit-text-stroke:1.5px currentColor;-webkit-text-fill-color:transparent}
+h1 .out,h2 .out{display:inline}
+em{font-style:italic;font-weight:300;text-transform:none}
+.eb{font:500 11px 'Inter',system-ui,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--pk)}
+.eb.l{display:flex;gap:14px;align-items:center;justify-content:center}.eb.l:before,.eb.l:after{content:"";width:30px;height:1px;background:currentColor}
+.script{font-family:'Yellowtail',cursive;font-weight:400;text-transform:none}
+/* nav */
+.nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;z-index:70;display:flex;align-items:center;gap:18px;padding:22px 24px;color:var(--bur);transition:color .3s}
+@media(min-width:1024px){.nav{padding:34px 44px}}
+.nav.lt{color:#fff}
+.bg{width:46px;height:46px;display:grid;place-items:center}.bars{display:grid;gap:6px;width:32px}.bars i{display:block;height:3.5px;background:currentColor;border-radius:2px;transition:transform .3s,opacity .3s}.bg.x .bars i:nth-child(1){transform:translateY(9.5px) rotate(45deg)}.bg.x .bars i:nth-child(2){opacity:0}.bg.x .bars i:nth-child(3){transform:translateY(-9.5px) rotate(-45deg)}
+.nav .script{font-size:3.3rem;line-height:1}
+/* lang pill */
+.pill{display:flex;padding:4px;border-radius:99px;border:1px solid rgba(255,255,255,.4);background:rgba(20,0,8,.25);backdrop-filter:blur(10px)}
+.pill button{font:500 .68rem var(--f);letter-spacing:.2em;padding:9px 16px;border-radius:99px;color:rgba(255,255,255,.8)}
+.pill button.on{background:var(--cream);color:var(--bur)}
+/* hero */
+.hero{background:var(--cream);padding:14px}
+.card{position:relative;min-height:calc(100svh - 28px);border-radius:28px;overflow:hidden;color:var(--cream);display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(24px,5vw,70px);
+background:#1a0508}
+.card:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(20,0,8,.7),rgba(20,0,8,.2) 60%,transparent)}
+.card>*{position:relative;z-index:2}.card>.himg{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.card .pill{position:absolute;top:22px;right:22px}
+.rate{align-self:flex-start;font:500 .72rem var(--m);letter-spacing:.1em;border:1px solid rgba(255,255,255,.35);padding:6px 14px;border-radius:99px;margin-bottom:20px}
+.hero h1{font-size:clamp(2.25rem,5vw,3.75rem);line-height:1.2;max-width:14ch}
+.lead{margin:20px 0 30px;max-width:30rem;color:rgba(246,239,230,.82);font-size:1.04rem}.lead b{color:#fff;font-weight:600}
+.cta{display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.btn{display:inline-flex;gap:10px;align-items:center;background:#fff;color:var(--bur);font:800 .76rem var(--f);letter-spacing:.14em;text-transform:uppercase;padding:16px 28px;border-radius:99px}
+.lnk{font:600 .74rem var(--f);letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid currentColor;padding-bottom:4px}
+.badge{position:absolute;right:clamp(18px,4vw,70px);bottom:clamp(18px,4vw,70px);width:120px;height:120px}
+.badge svg{width:100%;height:100%;animation:sp 18s linear infinite}.badge text{font:500 9.5px var(--f);letter-spacing:.24em;fill:var(--cream)}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media(max-width:700px){.badge{width:88px;height:88px;bottom:auto;top:90px}}
+/* story */
+section{position:relative;overflow:hidden}
+.story{padding:clamp(90px,12vw,150px) 6vw clamp(130px,14vw,200px);text-align:center}
+.story h2{font-size:clamp(2.4rem,6.4vw,5.6rem);margin-top:14px}
+.story h2 em{display:block;font-size:1.05em;font-weight:400;color:var(--bur);margin-top:6px}
+.story .tx{max-width:56ch;margin:46px auto 0;color:var(--mauve);font-size:1.02rem}.story .tx p+p{margin-top:22px}.story b{font-weight:800}
+/* waves */
+.wv{position:absolute;left:0;right:0;line-height:0;pointer-events:none;z-index:1}.wv svg{display:block;width:100%;height:clamp(36px,6vw,84px)}.wv.t{top:-1px}.wv.b{bottom:-1px}.wv path{fill:var(--paper)}
+/* historia */
+.gal{background:linear-gradient(#63001e,#500018);color:#fff;padding:clamp(120px,12vw,170px) 6vw}
+.wm{position:absolute;inset:0;display:flex;flex-wrap:wrap;gap:34px 40px;align-content:flex-start;font:3.4rem 'Yellowtail',cursive;opacity:.07;overflow:hidden;transform:rotate(-6deg) scale(1.2);user-select:none}
+.gi{position:relative;display:grid;gap:40px;grid-template-columns:1fr;align-items:center;max-width:1200px;margin:auto}
+@media(min-width:900px){.gi{grid-template-columns:1fr 1.1fr}}
+.gt svg.kitty{width:min(330px,76vw);height:auto;margin-bottom:30px;overflow:visible}
+.kitty .body{transform-origin:190px 306px;animation:br 3.6s ease-in-out infinite}.kitty .tail{transform-origin:186px 304px;animation:tl 2.6s ease-in-out infinite}@keyframes br{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.012)}}
+.kitty .eye{transform-box:fill-box;transform-origin:center;animation:bl 5s infinite}
+.kitty .st{opacity:0;animation:stm 2.4s ease-in-out infinite}.kitty .s2{animation-delay:.8s}.kitty .s3{animation-delay:1.6s}
+@keyframes nod{0%,100%{transform:rotate(-1.5deg)}50%{transform:rotate(3deg) translateY(1px)}}
+@keyframes tl{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(6deg)}}
+@keyframes bl{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+@keyframes stm{0%{transform:translateY(8px);opacity:0}35%{opacity:.95}100%{transform:translateY(-12px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.kitty *{animation:none!important}.kitty .st{opacity:.8}}
+.gt p{font-size:clamp(1.05rem,1.8vw,1.25rem);font-weight:400;line-height:1.7;max-width:26rem;min-height:7.5em}.gt b{font-weight:800}
+.ctl{display:flex;align-items:center;gap:12px;margin-top:20px}.ctl button{width:44px;height:44px;border-radius:50%;background:#ff99d3;color:var(--bur);font-size:1.1rem}.ctl span{color:rgba(246,239,230,.55);font:600 .72rem var(--f);margin-left:6px;letter-spacing:.06em}
+.gr{position:relative;height:min(62vh,500px);min-height:380px}
+.dr{position:absolute;top:0;left:50%;transform:translateX(-50%);font:600 .66rem var(--f);letter-spacing:.3em;text-transform:uppercase;color:#f58aa8}
+.pc{position:absolute;top:44px;left:50%;width:min(300px,64vw);height:calc(100% - 60px);border-radius:22px;border:2px solid rgba(255,153,211,.9);display:flex;align-items:flex-end;padding:16px;font:500 .72rem var(--m);letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.85);box-shadow:0 30px 50px rgba(0,0,0,.3);transition:all .5s cubic-bezier(.2,.7,.3,1)}
+.pc.p0{transform:translateX(-62%) rotate(0);z-index:3}.pc.p1{transform:translateX(-30%) rotate(5deg);z-index:2;filter:brightness(.8)}.pc.p2{transform:translateX(0) rotate(10deg);z-index:1;filter:brightness(.65)}
+/* menu */
+.menu{padding:clamp(100px,11vw,150px) 6vw clamp(70px,9vw,120px)}.mi{max-width:1120px;margin:auto}
+.mh{display:grid;gap:30px;grid-template-columns:1fr;align-items:end;margin-top:30px}
+@media(min-width:900px){.mh{grid-template-columns:1.4fr 1fr}}
+.mh h2{font-size:clamp(3rem,8vw,7rem);line-height:.9}.mh h2 em{display:block;font-weight:300}
+.mh p{border-left:2px solid var(--bur);padding-left:20px;color:var(--mauve);max-width:24rem}
+.tabs{display:flex;gap:6px;margin:46px 0 10px;flex-wrap:wrap}.tabs button{font:700 .72rem var(--d);letter-spacing:.14em;text-transform:uppercase;padding:13px 20px;border-radius:99px;color:var(--bur)}.tabs button.on{background:var(--tint)}
+.grp{margin-top:50px}.grp h3{display:flex;justify-content:space-between;align-items:baseline;font-size:clamp(1.1rem,2.2vw,1.5rem);letter-spacing:.05em;color:var(--pk)}.grp h3 .out{-webkit-text-stroke:1.4px var(--pk)}.grp h3 small{font:400 .66rem var(--m);color:var(--pkl)}
+.grp ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));gap:18px 70px;margin-top:22px}
+.grp li{display:flex;gap:30px;align-items:flex-start;padding:12px 0}
+.sh{flex:0 0 112px;width:112px;height:112px;filter:drop-shadow(0 8px 8px rgba(0,0,0,.18))}
+.sh.up{transform:none}.cols2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:0 70px;align-items:start}.cols2 .grp ul{grid-template-columns:1fr}.grp h4{font-size:1.05rem;letter-spacing:.05em;margin-top:14px;color:var(--bur)}
+.grp p{font-style:italic;font-size:.82rem;line-height:1.55;color:var(--mauve);opacity:.8;margin-top:8px;max-width:21rem}
+.tg{font:400 .6rem var(--m);letter-spacing:.14em;text-transform:uppercase;color:var(--pkl);margin-left:14px;font-weight:400}
+.nut{display:inline-block;margin-top:10px;font:400 .6rem var(--m);letter-spacing:.2em;text-transform:uppercase;color:var(--pk)}
+/* catering */
+.cat{background:var(--paper);padding:clamp(30px,5vw,60px) 0}
+.cb{position:relative;overflow:hidden;min-height:min(80vh,660px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--cream);padding:90px 6vw}
+.cb .bn{position:absolute;left:0;right:0;top:-8%;height:116%;will-change:transform}
+.cb .bn svg{width:100%;height:100%;display:block}
+.cb:after{content:"";position:absolute;inset:0;background:rgba(40,20,22,.45)}
+.cb>*:not(.bn){position:relative;z-index:2}
+.cat h2{font-size:clamp(2.25rem,7vw,6rem);line-height:1.02;margin:16px auto 0;max-width:12ch}.cat h2 .out{-webkit-text-stroke-color:var(--cream)}
+.cat p{max-width:38rem;margin:26px auto 28px;font-weight:400;font-size:.9rem;color:var(--cream)}.cat p b{font-weight:800}
+.cat .btn{background:#ff99d3;color:#63001e;padding:12px 22px;font-size:.66rem;margin:0 auto}
+/* instagram */
+.ig{background:var(--paper);padding:clamp(80px,10vw,128px) 6vw clamp(120px,13vw,190px);position:relative}
+.ig:before{content:"";position:absolute;inset:0;opacity:.3;mix-blend-mode:multiply;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .38  0 0 0 0 .22  0 0 0 0 .12  0 0 0 .14 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.ii{position:relative;max-width:1280px;margin:auto}
+.ig .eb{display:flex;gap:10px;align-items:center;color:var(--bur);font-size:10px;letter-spacing:.2em}
+.igh{display:grid;gap:28px;grid-template-columns:1fr;align-items:end;margin-top:30px}@media(min-width:900px){.igh{grid-template-columns:1.7fr 1fr}}
+.igh h2{font-size:clamp(2.4rem,5.6vw,5.2rem);line-height:.92}
+.igh p{color:var(--mauve);font-size:.8rem;max-width:21rem;font-weight:400}.igh p b{font-weight:800;color:var(--bur)}
+.igh .btn{background:#ff99d3;color:#63001e;padding:12px 20px;font-size:.62rem;margin-top:16px}
+.igs{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,1fr);gap:12px;overflow-x:auto;margin-top:38px;scrollbar-width:none}.igs::-webkit-scrollbar{display:none}.igs div{position:relative;overflow:hidden}.igs div svg{position:absolute;left:50%;top:46%;width:66%;height:auto;transform:translate(-50%,-50%);filter:drop-shadow(0 10px 12px rgba(0,0,0,.25))}
+.igs div{aspect-ratio:3/4;border-radius:14px;background:linear-gradient(150deg,#ffc5e6,#63001e);display:flex;align-items:flex-end;padding:12px;font:400 .62rem var(--m);color:#fff}
+.igs div:nth-child(2n){background:linear-gradient(150deg,#e8c27a,#7a2a20)}.igs div:nth-child(3n){background:linear-gradient(150deg,#d9b88f,#4a2a1a)}
+.igs div svg.sc{left:0;top:0;width:100%;height:100%;transform:none;filter:none}.pc{padding:0;overflow:hidden}.pc svg{position:absolute;inset:0;width:100%;height:100%}
+.ph{overflow:hidden}.ph svg{position:absolute;inset:0;width:100%;height:100%}
+/* contact */
+.ct{background:linear-gradient(#63001e,#3d0012);color:#fff;padding:clamp(130px,13vw,190px) 6vw 0}
+.ct h2{font-size:clamp(2.4rem,6.4vw,5.4rem);text-align:center;margin-top:16px;line-height:1.08}.ct h2 .out{-webkit-text-stroke-color:#fff}.ct h2 em{font-weight:600;font-size:1.02em}
+.cg{display:grid;gap:30px;grid-template-columns:1fr;max-width:1200px;margin:56px auto 0}@media(min-width:900px){.cg{grid-template-columns:1.4fr 1fr}}
+.map{position:relative;min-height:440px;border-radius:26px;overflow:hidden;background:
+repeating-linear-gradient(90deg,transparent 0 92px,#8b1c3c 92px 100px),repeating-linear-gradient(0deg,transparent 0 78px,#8b1c3c 78px 85px),linear-gradient(115deg,transparent 40%,#8b1c3c 40% 42%,transparent 42%),#ffc5e6}
+.map i{position:absolute;font:normal 600 .55rem var(--f);background:#5a0a26;color:#fff;border-radius:4px;padding:2px 6px;white-space:nowrap}
+.map .zm{position:absolute;top:16px;right:16px;display:grid;background:#7a1236;border-radius:12px;overflow:hidden}.zm span{width:38px;height:38px;display:grid;place-items:center;color:#fff}
+.map .hold{position:absolute;left:50%;top:44%;transform:translateX(-50%);background:#5a0a26;color:#fff;font:500 .6rem var(--m);letter-spacing:.14em;text-transform:uppercase;padding:9px 16px;border-radius:99px}
+.map .mk{position:absolute;left:48%;top:34%;font-size:2.4rem;color:#fff;line-height:1}
+.map .ad{position:absolute;left:28px;bottom:26px;max-width:270px;background:rgba(90,10,38,.92);border-radius:18px;padding:16px 20px}
+.ad b{display:block;font-weight:800;font-size:.92rem;text-transform:uppercase;line-height:1.2}.ad a{display:inline-block;margin-top:10px;font:800 .6rem var(--f);letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid #fff}
+.info{background:rgba(70,0,25,.5);border:1px solid rgba(255,255,255,.18);border-radius:26px;padding:30px 34px}
+.info dt{font:500 .64rem var(--f);letter-spacing:.28em;text-transform:uppercase;color:#f58aa8;margin-top:24px}.info dt:first-child{margin-top:0}
+.info dd{font-weight:600;font-size:1.05rem;margin-top:6px;line-height:1.5}.soc{display:flex;gap:18px;margin-top:10px}.soc svg{width:34px;height:34px}
+.bigl{text-align:center;font-size:clamp(5rem,13vw,9rem);line-height:1.1;margin:70px 0 40px}
+.ft{max-width:1360px;margin:auto;border-top:1px solid rgba(255,255,255,.15);padding:24px 0 28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font:500 .62rem var(--f);letter-spacing:.2em;text-transform:uppercase;color:#f58aa8}.ft nav{display:flex;gap:22px}
+/* overlay */
+#ov{position:fixed;inset:0;z-index:65;background:linear-gradient(rgba(99,0,30,.95),rgba(61,0,18,.95));backdrop-filter:blur(3px);color:#f6efe6;display:flex;flex-direction:column;overflow:auto;visibility:hidden;clip-path:polygon(0 0,100% 0,100% 0,0 0);transition:clip-path .7s cubic-bezier(.2,.7,.3,1),visibility 0s .7s}#ov.open{visibility:visible;clip-path:polygon(0 0,100% 0,100% 175%,0 100%);transition:clip-path .7s cubic-bezier(.2,.7,.3,1),visibility 0s}#ov .in{display:flex;flex-direction:column;flex:1;transform-origin:bottom left;opacity:.25;transform:translate(-96px,-96px) scale(1.5) rotate(-15deg);transition:all .7s cubic-bezier(.2,.7,.3,1);pointer-events:none}#ov.open .in{opacity:1;transform:none;pointer-events:auto}
+.ovb{flex:1;display:grid;gap:50px;grid-template-columns:1fr;align-items:center;max-width:1000px;width:100%;margin:auto;padding:130px 7vw 40px}
+@media(min-width:900px){.ovb{grid-template-columns:.8fr 1.2fr}}
+.ph{position:relative;aspect-ratio:3/4;max-height:520px;border-radius:26px;background:linear-gradient(160deg,#c9506a,#5a0a26);display:flex;align-items:flex-end;padding:20px;font:500 .64rem var(--f);letter-spacing:.22em;text-transform:uppercase}
+@media(max-width:899px){.ph{display:none}}
+.ovb ul{list-style:none;margin:30px 0 56px}.ovb li a{display:block;font:800 clamp(2.25rem,7vw,4.5rem)/.98 var(--d);text-transform:uppercase;transition:color .3s}.ovb li a:hover{color:#f5c6d0}
+.ovc{display:flex;gap:44px;flex-wrap:wrap;font-weight:600;font-size:.95rem}.ovc small{display:block;font:500 .62rem var(--f);letter-spacing:.28em;text-transform:uppercase;color:#f58aa8;margin-bottom:14px}.ovc p{margin-bottom:6px}
+.ovf{display:flex;justify-content:space-between;padding:22px 32px;border-top:1px solid rgba(255,255,255,.18);font:500 .62rem var(--f);letter-spacing:.2em;text-transform:uppercase;color:#f5c6d0}
+#ov .pill{position:absolute;top:26px;right:30px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><filter id="bq"><feGaussianBlur stdDeviation="6"/></filter><symbol id="sh" viewBox="0 0 100 100"><path d="M24 56h52l-7 38H31z" fill="#ead8b8"/><path d="M33 58l3 34M44 58l1.5 34M56 58l-1.5 34M67 58l-3 34" stroke="rgba(120,80,40,.35)" stroke-width="2" fill="none"/><path d="M10 54C8 28 26 10 50 10s42 18 40 44c0 7-12 9-40 9S10 61 10 54z" fill="currentColor"/><path d="M18 40C20 26 32 16 46 14" stroke="#fff" stroke-opacity=".28" stroke-width="4" stroke-linecap="round" fill="none"/><g style="fill:var(--tp,rgba(0,0,0,.22))"><circle cx="34" cy="30" r="4.2"/><circle cx="52" cy="21" r="4"/><circle cx="68" cy="33" r="4.2"/><circle cx="44" cy="43" r="3.8"/><circle cx="62" cy="48" r="3.8"/><circle cx="27" cy="49" r="3.4"/><circle cx="78" cy="48" r="3.4"/></g><rect x="20" y="56" width="60" height="6" rx="3" fill="#dcc79f"/></symbol><symbol id="cp" viewBox="0 0 60 80"><path d="M12 22h36l-5 52H17z" fill="currentColor"/><rect x="9" y="14" width="42" height="9" rx="4" fill="#fff" opacity=".85"/><circle cx="30" cy="48" r="11" fill="#63001e"/></symbol><symbol id="cf" viewBox="0 0 80 60"><ellipse cx="40" cy="46" rx="36" ry="9" fill="currentColor" opacity=".7"/><path d="M14 20h46c0 20-8 30-23 30S14 40 14 20z" fill="currentColor"/><ellipse cx="37" cy="20" rx="23" ry="5" fill="#6b3a22"/><path d="M60 24c10 0 10 14-1 14" stroke="currentColor" stroke-width="4" fill="none"/></symbol></svg>
+
+<div class="nav lt" id="nav"><button class="bg" id="bg" aria-label="Menu"><span class="bars"><i></i><i></i><i></i></span></button><a href="#top" class="script">Mélie</a></div>
+
+<div id="ov"><div class="in">
+  <div class="pill" data-lang><button data-l="es">ES</button><button data-l="en">EN</button><button data-l="fr">FR</button></div>
+  <div class="ovb">
+    <div class="ph"><span data-i="cap" style="position:relative;z-index:2"></span></div>
+    <div><div class="eb" style="display:flex;gap:14px;align-items:center"><span style="width:28px;height:1px;background:currentColor"></span><span data-i="nav"></span></div>
+      <ul><li><a href="#menu" data-i="m1"></a></li><li><a href="#catering" data-i="m2"></a></li><li><a href="#contacto" data-i="m3"></a></li></ul>
+      <div class="ovc">
+        <div><small data-i="contact"></small><p>Instagram</p><p>WhatsApp</p><p>Email</p></div>
+        <div><small data-i="find"></small><p>Place de la Bourse<br>33000 Bordeaux</p><p>+33 6 00 00 00 00</p><small style="margin-top:22px" data-i="hrs"></small><p data-i="hours2"></p></div>
+      </div></div>
+  </div>
+  <div class="ovf"><span id="clk"></span><span data-i="made"></span></div>
+</div></div>
+
+<div class="hero" id="top" data-nav="lt"><div class="card">
+  <svg class="himg" viewBox="0 0 1600 900" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"><defs><linearGradient id="hb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a0508"/><stop offset=".6" stop-color="#4a1220"/><stop offset="1" stop-color="#2a0a10"/></linearGradient><linearGradient id="hw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6a3a22"/><stop offset="1" stop-color="#241008"/></linearGradient><filter id="bl"><feGaussianBlur stdDeviation="28"/></filter><filter id="bl2"><feGaussianBlur stdDeviation="9"/></filter></defs><rect width="1600" height="900" fill="url(#hb)"/><g filter="url(#bl)" opacity=".8"><circle cx="560" cy="190" r="110" fill="#e8a24a"/><circle cx="930" cy="110" r="80" fill="#d9507a"/><circle cx="1350" cy="190" r="130" fill="#c98a4a"/><circle cx="1510" cy="70" r="70" fill="#ff99d3"/><circle cx="720" cy="310" r="60" fill="#e8c27a"/></g><rect y="610" width="1600" height="290" fill="url(#hw)"/><path d="M0 640h1600" stroke="rgba(255,220,180,.16)" stroke-width="3"/><g filter="url(#bl2)" opacity=".55"><ellipse cx="1130" cy="805" rx="470" ry="42" fill="#000"/></g><use href="#sh" x="1010" y="400" width="440" height="440" style="color:#c98a4a;--tp:#3a3a8a"/><use href="#sh" x="1360" y="520" width="300" height="300" style="color:#d9a35c;--tp:#c4284a"/><use href="#sh" x="770" y="570" width="270" height="270" style="color:#5a2e20;--tp:#e8c09a"/><g fill="#d9a35c" opacity=".7"><circle cx="980" cy="840" r="5"/><circle cx="1050" cy="860" r="4"/><circle cx="1240" cy="850" r="5"/><circle cx="1320" cy="835" r="3.5"/></g></svg>
+  <div class="pill" data-lang><button data-l="es">ES</button><button data-l="en">EN</button><button data-l="fr">FR</button></div>
+  <span class="rate" data-i="rate"></span>
+  <h1><span class="out" data-i="h1a"></span><br><span data-i="h1b"></span></h1>
+  <p class="lead" data-i="lead"></p>
+  <div class="cta"><a class="btn" href="#menu" data-i="cta1"></a><a class="lnk" href="#story" data-i="cta2"></a></div>
+  <a class="badge" href="#story" aria-label="scroll"><svg viewBox="0 0 120 120"><defs><path id="c" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1 -92 0"/></defs><text><textPath href="#c">SIGUE · BAJANDO · SIGUE · BAJANDO · SIGUE · BAJANDO ·</textPath></text></svg></a>
+</div></div>
+
+<section class="story" id="story" data-nav="dk">
+  <div class="eb" data-i="s_eye"></div>
+  <h2><span class="out" data-i="s_h1"></span><em data-i="s_h2"></em></h2>
+  <div class="tx"><p data-i="s_p1"></p><p data-i="s_p2"></p><p data-i="s_p3"></p></div>
+</section>
+
+<section class="gal" id="historia" data-nav="lt">
+  <div class="wv t"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 0H1440V34C1200 8 950 70 650 52C380 36 150 66 0 78Z"/></svg></div>
+  <div class="wm" id="wm"></div>
+  <div class="gi">
+    <div class="gt">
+      <svg class="kitty" viewBox="120 40 410 370" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+<path d="M160 306C140 260 134 208 146 172C158 140 200 134 222 164"/>
+<path d="M178 308C162 262 158 214 168 184C176 160 204 156 218 176"/>
+<path d="M162 326C160 348 156 370 152 392M208 334C208 356 206 374 204 392M266 334C268 356 270 374 272 392M316 326C320 348 326 370 330 392M156 368C200 382 280 382 326 368"/>
+<ellipse fill="#5f001c" cx="236" cy="312" rx="88" ry="18"/><path d="M148 314C150 332 322 334 324 314"/>
+<g class="body"><path fill="#5f001c" d="M236 120C242 102 250 88 256 80L258 54L277 69L292 52L302 82C306 88 316 96 322 107C326 113 323 119 317 120C312 122 308 128 305 135C301 141 299 150 299 162C299 192 297 216 293 240C291 262 289 284 291 300C291 306 301 306 307 306C307 312 273 314 263 309L192 306C184 300 182 292 184 276C188 246 202 222 216 192C228 164 234 142 236 120Z"/>
+<path d="M198 246C212 222 250 224 256 256C258 276 254 292 250 304"/>
+<path d="M300 98C305 102 311 102 315 98M320 117L337 112M320 121L337 124" stroke-width="4"/></g>
+<g class="tail"><path stroke-width="9" d="M186 304C208 322 238 328 262 324C274 322 278 312 270 308"/></g>
+<ellipse fill="#5f001c" cx="430" cy="268" rx="82" ry="22"/><path d="M348 270C352 290 508 290 512 270M430 292C430 324 432 352 432 384M400 396C414 388 450 388 464 396"/>
+<g class="muf"><path fill="#5f001c" d="M350 244L356 270H380L386 244ZM346 244C344 224 356 214 368 214C380 214 392 224 390 244Z"/><path d="M362 248L363 267M373 248L373 267M361 215C362 207 374 207 375 215"/><g fill="#fff" stroke="none"><circle cx="360" cy="232" r="2.4"/><circle cx="371" cy="226" r="2.4"/><circle cx="378" cy="236" r="2.4"/></g></g>
+<ellipse fill="#5f001c" cx="436" cy="262" rx="50" ry="10"/><ellipse cx="436" cy="261" rx="30" ry="5.5"/>
+<path fill="#5f001c" d="M398 218C398 248 410 262 434 262C458 262 470 248 470 218Z"/><path d="M468 224C492 218 492 246 462 248"/><ellipse cx="434" cy="218" rx="36" ry="7"/>
+<g class="st s1"><path d="M414 200C404 186 424 176 414 162C406 152 418 144 414 134" stroke-width="5"/></g><g class="st s2"><path d="M436 200C426 186 446 176 436 162C428 152 440 144 436 134" stroke-width="5"/></g>
+</g></svg>
+      <p id="sl"></p>
+      <div class="ctl"><button id="pv" aria-label="prev">←</button><button id="nx" aria-label="next">→</button><span id="cnt">01 / 04</span></div>
+    </div>
+    <div class="gr"><div class="dr"><span data-i="drag"></span> →</div><div class="pc p0" id="c0"></div><div class="pc p1" id="c1"></div><div class="pc p2" id="c2"></div></div>
+  </div>
+  <div class="wv b"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 62C240 34 520 8 820 40C1100 70 1300 56 1440 34V80H0Z"/></svg></div>
+</section>
+
+<section class="menu" id="menu" data-nav="dk"><div class="mi">
+  <div class="eb" data-i="c_eye"></div>
+  <div class="mh"><h2><em class="out" style="font-weight:800" hidden></em><em data-i="c_a" style="color:var(--bur)"></em><span data-i="c_b"></span></h2><p data-i="c_p"></p></div>
+  <div class="tabs" id="tabs"></div>
+  <div id="list"></div>
+</div></section>
+
+<section class="cat" id="catering"><div class="cb" data-nav="lt">
+  <div class="bn" id="bn"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="wd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#dcb888"/><stop offset="1" stop-color="#b98558"/></linearGradient></defs><rect width="1600" height="900" fill="url(#wd)"/><g transform="rotate(-12 300 185)"><rect x="90" y="70" width="420" height="230" rx="10" fill="#efe0e2"/><circle cx="300" cy="185" r="42" fill="#6e1230"/></g><g transform="rotate(-4 875 150)"><rect x="640" y="30" width="470" height="240" rx="10" fill="#efe0e2"/><circle cx="875" cy="150" r="42" fill="#6e1230"/></g><g transform="rotate(9 1370 195)"><rect x="1190" y="90" width="360" height="210" rx="10" fill="#efe0e2"/><circle cx="1370" cy="195" r="42" fill="#6e1230"/></g><g transform="rotate(10 240 640)"><rect x="40" y="520" width="400" height="240" rx="10" fill="#efe0e2"/><circle cx="240" cy="640" r="42" fill="#6e1230"/></g><g transform="rotate(-6 700 580)"><rect x="520" y="470" width="360" height="220" rx="10" fill="#efe0e2"/><circle cx="700" cy="580" r="42" fill="#6e1230"/></g><circle cx="1330" cy="770" r="250" fill="#efe8e0"/><use href="#sh" x="1130" y="560" width="230" height="230" style="color:#c98a4a;--tp:#3a3a8a"/><use href="#sh" x="1300" y="540" width="250" height="250" style="color:#5a2e20;--tp:#e8c09a"/><use href="#sh" x="1220" y="660" width="240" height="240" style="color:#d9a35c;--tp:#c4284a"/></svg></div>
+  <div class="eb l" data-i="k_eye" style="color:#f6efe6"></div>
+  <h2><span class="out" data-i="k_a"></span><br><span data-i="k_b"></span></h2>
+  <p data-i="k_p"></p>
+  <a class="btn" href="#contacto"><span data-i="k_cta"></span> →</a>
+</div></section>
+
+<section class="ig" id="instagram" data-nav="dk"><div class="ii">
+  <div class="eb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg><span data-i="i_eye"></span></div>
+  <div class="igh"><h2><span class="out" data-i="i_a"></span> <span data-i="i_b"></span> <span class="out" data-i="i_c"></span></h2>
+  <div><p data-i="i_p"></p><a class="btn" href="https://www.instagram.com/uipact/" target="_blank" rel="noopener noreferrer"><span>@melie</span> →</a></div></div>
+  <div class="igs"><div>IG 1</div><div>IG 2</div><div>IG 3</div><div>IG 4</div><div>IG 5</div><div>IG 6</div></div>
+</div></section>
+
+<section class="ct" id="contacto" data-nav="lt">
+  <div class="wv t"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 0H1440V30C1180 6 940 62 640 48C360 36 160 58 0 70Z"/></svg></div>
+  <div class="eb l" style="color:#f58aa8" data-i="v_eye"></div>
+  <h2><span class="out" data-i="v_a"></span><br><span class="out" data-i="v_b"></span> <em data-i="v_c"></em></h2>
+  <div class="cg">
+    <div class="map"><i style="left:16%;top:18%">Quai de la Douane</i><i style="left:46%;top:19%">Rue Fernand Philippart</i><i style="left:62%;top:42%">Place du Parlement</i><i style="left:60%;top:66%">BORDEAUX</i><i style="left:6%;top:56%">Rue Saint-Rémi</i><i style="left:84%;top:80%">Tram · Bourse</i>
+      <div class="zm"><span>+</span><span>−</span><span>⌖</span></div><span class="mk script">Mélie</span><span class="hold" data-i="hold"></span>
+      <div class="ad"><b>Place de la Bourse<br>33000 Bordeaux</b><a href="#" data-i="v_map"></a></div></div>
+    <div class="info"><dl>
+      <dt data-i="d2"></dt><dd data-i="hours2"></dd>
+      <dt data-i="d3"></dt><dd>+33 6 00 00 00 00</dd>
+      <dt>Email</dt><dd>hola@melie.example</dd>
+      <dt data-i="d4"></dt><dd>pedidos@melie.example</dd>
+      <dt data-i="d5"></dt><dd class="soc"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="#fff"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><path d="M4 20l1.3-4.2A8 8 0 1 1 8.4 18.8z"/></svg></dd></dl></div>
+  </div>
+  <div class="bigl script">Mélie</div>
+  <div class="ft"><span data-i="copy"></span><nav><a href="#" data-i="priv"></a><a href="#" data-i="terms"></a></nav></div>
+</section>
+
+<script>
+const T={
+es:{nav:"Navegar",m1:"Carta",m2:"Catering",m3:"Visítanos",contact:"Contacto",find:"Encuéntranos",hrs:"Horario",hours2:"Lun–Mar · Cerrado<br>Mié–Dom · 15:00–20:30",cap:"Recién horneado cada mañana",clk:"Son las {t} en Burdeos",made:"Hecho en Burdeos",
+rate:"4,9 ★ · 102 reseñas",h1a:"Muffins artesanales",h1b:"de Mélie.",lead:"Nuevo en <b>Burdeos</b>. Muffins horneados cada día, maridadas con cafés de especialidad — un sabor nuevo cada semana, los clásicos de siempre y caprichos para los peludos.",cta1:"Encuentra tu favorita →",cta2:"Sobre el café",
+s_eye:"Nuestra historia",s_h1:"Una tradición",s_h2:"reinventada",s_p1:"En Mélie creemos que un <em>muffin</em> puede contar mucho más que una receta.",s_p2:"Todo empieza con una receta de muffin tradicional, transmitida de generación en generación. Una elaboración sencilla, esponjosa y cuidada, inspirada en esas pastelerías de barrio donde el olor a mantequilla recién horneada forma parte de los recuerdos.",s_p3:"Esa receta original es el corazón de <b>MÉLIE</b>.",
+drag:"Arrástrame",
+sl0:"MÉLIE también nace de la idea de <b>reinterpretar lo clásico.</b> De mezclar tradición con creatividad, lo clásico con lo atrevido, lo artesanal con lo inesperado.",sl1:"Por eso hemos transformado la receta tradicional en una colección de <b>más de 15 variedades</b> únicas que cambian, evolucionan y sorprenden constantemente.",sl2:"Las acompañamos con <b>cafés de especialidad,</b> matcha y ube lattes, y un pequeño capricho para los peludos.",sl3:"Porque MÉLIE <b>no es solo una cafetería.</b> Es un lugar donde la tradición se reinventa.",
+c_eye:"Carta",c_a:"Las",c_b:"estrellas",c_p:"Horneadas cada mañana siguiendo la receta familiar original. Crujientes por fuera, tiernas por dentro. Cada sabor, una historia.",t1:"Muffins",t2:"Café",t3:"Para llevar",g1:"Clásicos",g2:"Especiales",g3:"Café de especialidad",g4:"Bebidas premium",g5:"Mélie Packs",bs:"Best seller",nut:"Frutos de cáscara",
+k_eye:"Catering",k_a:"Días grandes,",k_b:"más dulces con Mélie",k_p:"Bodas, inauguraciones, un martes en la oficina que quiere parecer menos un martes. Preparamos pedidos especiales y <b>experiencias personalizadas</b> para cualquier ocasión.",k_cta:"Pedir ahora",
+i_eye:"Mélie en Instagram",i_a:"Mira qué se",i_b:"está horneando",i_c:"antes que nadie.",i_p:"Únete a las <b>1432</b> personas que nunca se pierden una hornada — cada creación y bebida de temporada se estrena primero en nuestro Instagram.",
+v_eye:"Pásate a vernos",v_a:"Encuéntranos",v_b:"en",v_c:"Burdeos.",hold:"Ctrl + scroll para zoom",v_map:"Abrir en mapas →",d2:"Horario",d3:"Teléfono",d4:"Pedidos",d5:"Síguenos",copy:"© 2026 Mélie — Todos los derechos reservados",priv:"Privacidad",terms:"Términos"},
+en:{nav:"Browse",m1:"Menu",m2:"Catering",m3:"Visit us",contact:"Contact",find:"Find us",hrs:"Hours",hours2:"Mon–Tue · Closed<br>Wed–Sun · 3:00–8:30 pm",cap:"Freshly baked every morning",clk:"It’s {t} in Bordeaux",made:"Made in Bordeaux",
+rate:"4.9 ★ · 102 reviews",h1a:"Handmade muffins",h1b:"by Mélie.",lead:"New in <b>Bordeaux</b>. Muffins baked fresh every day, paired with specialty coffee — a new flavour every week, the timeless classics and treats for the furry ones.",cta1:"Find your favourite →",cta2:"About the café",
+s_eye:"Our story",s_h1:"A tradition",s_h2:"reinvented",s_p1:"At Mélie we believe a <em>muffin</em> can tell much more than a recipe.",s_p2:"It all starts with a traditional muffin recipe, handed down from generation to generation. Simple, fluffy and carefully made, inspired by those neighbourhood bakeries where the smell of freshly baked butter is part of our memories.",s_p3:"That original recipe is the heart of <b>MÉLIE</b>.",
+drag:"Drag me",
+sl0:"MÉLIE was also born from the idea of <b>reinterpreting the classic.</b> Mixing tradition with creativity, the classic with the bold, the handmade with the unexpected.",sl1:"That’s why we turned the traditional recipe into a collection of <b>more than 15 unique varieties</b> that keep changing, evolving and surprising.",sl2:"We pair them with <b>specialty coffee,</b> matcha and ube lattes, and a little treat for the furry ones.",sl3:"Because MÉLIE is <b>not just a café.</b> It’s a place where tradition is reinvented.",
+c_eye:"Menu",c_a:"The",c_b:"stars",c_p:"Baked every morning following the original family recipe. Crisp outside, tender inside. Every flavour, a story.",t1:"Muffins",t2:"Coffee",t3:"To go",g1:"Classics",g2:"Specials",g3:"Specialty coffee",g4:"Premium drinks",g5:"Mélie Packs",bs:"Best seller",nut:"Tree nuts",
+k_eye:"Catering",k_a:"Big days,",k_b:"sweeter with Mélie",k_p:"Weddings, openings, a Tuesday at the office that wants to feel less like a Tuesday. We prepare special orders and <b>tailor-made experiences</b> for any occasion.",k_cta:"Order now",
+i_eye:"Mélie on Instagram",i_a:"See what’s",i_b:"baking right now",i_c:"before anyone else.",i_p:"Join the <b>1432</b> people who never miss a batch — every creation and seasonal drink premieres first on our Instagram.",
+v_eye:"Drop by",v_a:"Find us",v_b:"in",v_c:"Bordeaux.",hold:"Ctrl + scroll to zoom",v_map:"Open in maps →",d2:"Hours",d3:"Phone",d4:"Orders",d5:"Follow us",copy:"© 2026 Mélie — All rights reserved",priv:"Privacy",terms:"Terms"},
+fr:{nav:"Naviguer",m1:"Carte",m2:"Traiteur",m3:"Nous rendre visite",contact:"Contact",find:"Nous trouver",hrs:"Horaires",hours2:"Lun–Mar · Fermé<br>Mer–Dim · 15h00–20h30",cap:"Fraîchement cuit chaque matin",clk:"Il est {t} à Bordeaux",made:"Fait à Bordeaux",
+rate:"4,9 ★ · 102 avis",h1a:"Muffins artisanaux",h1b:"de Mélie.",lead:"Nouveau à <b>Bordeaux</b>. Des muffins cuits chaque jour, associées à des cafés de spécialité — une nouvelle saveur chaque semaine, les grands classiques et des gourmandises pour les toutous.",cta1:"Trouve ta préférée →",cta2:"À propos du café",
+s_eye:"Notre histoire",s_h1:"Une tradition",s_h2:"réinventée",s_p1:"Chez Mélie, nous croyons qu’un <em>muffin</em> peut raconter bien plus qu’une recette.",s_p2:"Tout commence par une recette de muffin traditionnelle, transmise de génération en génération. Une préparation simple, moelleuse et soignée, inspirée de ces pâtisseries de quartier où l’odeur du beurre tout juste cuit fait partie des souvenirs.",s_p3:"Cette recette originale est le cœur de <b>MÉLIE</b>.",
+drag:"Fais-moi glisser",
+sl0:"MÉLIE naît aussi de l’idée de <b>réinterpréter le classique.</b> Mêler tradition et créativité, le classique et l’audacieux, l’artisanal et l’inattendu.",sl1:"C’est pourquoi nous avons transformé la recette traditionnelle en une collection de <b>plus de 15 variétés</b> uniques qui changent, évoluent et surprennent sans cesse.",sl2:"Nous les accompagnons de <b>cafés de spécialité,</b> de matcha et d’ube lattes, et d’une petite gâterie pour les toutous.",sl3:"Parce que MÉLIE n’est <b>pas qu’un simple café.</b> C’est un lieu où la tradition se réinvente.",
+c_eye:"Carte",c_a:"Les",c_b:"stars",c_p:"Cuites chaque matin selon la recette familiale d’origine. Croustillantes dehors, moelleuses dedans. Chaque saveur, une histoire.",t1:"Muffins",t2:"Café",t3:"À emporter",g1:"Classiques",g2:"Spéciales",g3:"Café de spécialité",g4:"Boissons premium",g5:"Mélie Packs",bs:"Best seller",nut:"Fruits à coque",
+k_eye:"Traiteur",k_a:"Les grands jours,",k_b:"plus doux avec Mélie",k_p:"Mariages, inaugurations, un mardi au bureau qui voudrait moins ressembler à un mardi. Nous préparons des commandes spéciales et des <b>expériences sur mesure</b> pour toute occasion.",k_cta:"Commander",
+i_eye:"Mélie sur Instagram",i_a:"Regarde ce qui est",i_b:"en train de cuire",i_c:"avant tout le monde.",i_p:"Rejoins les <b>1432</b> personnes qui ne ratent aucune fournée — chaque création et boisson de saison est dévoilée d’abord sur notre Instagram.",
+v_eye:"Passe nous voir",v_a:"Retrouve-nous",v_b:"à",v_c:"Bordeaux.",hold:"Ctrl + molette pour zoomer",v_map:"Ouvrir dans Maps →",d2:"Horaires",d3:"Téléphone",d4:"Commandes",d5:"Suis-nous",copy:"© 2026 Mélie — Tous droits réservés",priv:"Confidentialité",terms:"Conditions"}};
+const D=(es,en,fr)=>({es,en,fr});
+const M={
+t1:[["g1",[["Vainilla","#e6b45a",D("El clásico de siempre: esponjoso, dorado y con un delicado aroma a vainilla.","The all-time classic: fluffy, golden and delicately scented with vanilla.","Le grand classique : moelleux, doré et délicatement parfumé à la vanille.")],["Chocolate","#5a2e20",D("Cacao intenso con un interior húmedo y esponjoso.","Intense cocoa with a moist, fluffy crumb.","Cacao intense et mie moelleuse.")],["Chips de chocolate","#c98a4a",D("Masa de vainilla con generosas pepitas de chocolate negro.","Vanilla batter with generous dark chocolate chips.","Pâte vanille et généreuses pépites de chocolat noir."),0,0,"#3a1c12"]]],
+["g2",[["Arándanos","#c98a4a",D("Arándanos jugosos en una miga tierna con topping crujiente.","Juicy blueberries in a tender crumb with a crunchy topping.","Myrtilles juteuses dans une mie tendre au dessus croustillant."),1,0,"#3a3a8a"],["Frambuesa","#d9a35c",D("Frambuesas frescas y un toque de limón. Dulce con chispa ácida.","Fresh raspberries with a hint of lemon. Sweet with a tart spark.","Framboises fraîches et zeste de citron. Doux avec une pointe acidulée."),1,0,"#c4284a"],["Limón y amapola","#f0cf63",D("Glaseado de limón suave y semillas de amapola. Fresco y ligero.","Soft lemon glaze and poppy seeds. Fresh and light.","Glaçage citron et graines de pavot. Frais et léger."),0,0,"#2a2a3a"],["Pistacho","#a9c26b",D("Crema de pistacho y trocitos tostados. Elegante e intenso.","Pistachio cream and toasted pieces. Elegant and intense.","Crème de pistache et éclats grillés. Élégant et intense."),0,1,"#6f8a2f"],["Plátano y nuez","#b9803f",D("Plátano maduro y nueces crujientes. Reconfortante y casero.","Ripe banana and crunchy walnuts. Comforting and homemade.","Banane mûre et noix croquantes. Réconfortant et maison."),0,1,"#7a5230"],["Zanahoria","#d98b3a",D("Zanahoria, canela y glaseado de queso crema.","Carrot, cinnamon and cream cheese frosting.","Carotte, cannelle et glaçage au fromage frais."),0,0,"#f6efe6"]]]],
+t2:[["g3",[["Latte","#c89a76",D("Espresso con leche cremosa y suave latte art.","Espresso with creamy milk and soft latte art.","Espresso, lait crémeux et latte art.")],["Capuchino","#a8704c",D("Espresso intenso con espuma cremosa y un toque de cacao.","Intense espresso, creamy foam, a touch of cocoa.","Espresso intense, mousse crémeuse, touche de cacao.")],["Expresso","#4a2a1c",D("Espresso intenso y aromático. Corto, potente y lleno de carácter.","Intense, aromatic espresso. Short, strong and full of character.","Espresso intense et aromatique. Court, puissant et plein de caractère.")],["Americano","#6b3f2a",D("Espresso suavizado con agua caliente, ligero y aromático.","Espresso softened with hot water, light and aromatic.","Espresso allongé d’eau chaude, léger et aromatique.")]]],
+["g4",[["Coco Matcha","#9ccf6a",D("Matcha japonés suave y equilibrado con leche cremosa. Refrescante y delicado.","Smooth, balanced Japanese matcha with creamy milk. Refreshing and delicate.","Matcha japonais doux et équilibré au lait crémeux. Rafraîchissant et délicat.")],["Ube Latte","#b48ad8",D("Ube cremoso con un suave sabor a vainilla natural.","Creamy ube with a soft natural vanilla flavour.","Ube crémeux à la douce vanille naturelle.")],["Matcha Latte","#8fbf4a",D("Matcha puro con leche y hielo. Intenso y fresco.","Pure matcha with milk and ice. Intense and fresh.","Matcha pur, lait et glaçons. Intense et frais.")],["Chai Latte","#d9a46a",D("Canela, vainilla y cardamomo. Cálida y reconfortante.","Cinnamon, vanilla and cardamom. Warm and comforting.","Cannelle, vanille et cardamome. Chaude et réconfortante.")],["Ube Matcha Latte","#9a6ac8",D("Lo más especial de la casa: ube dulce y cremoso con matcha japonés.","The house special: sweet, creamy ube with Japanese matcha.","La spécialité de la maison : ube doux et crémeux au matcha japonais.")],["Thai Tea Latte","#f08a3a",D("Té tailandés tradicional con leche cremosa, dulce y especiado.","Traditional Thai tea with creamy milk, sweet and spiced.","Thé thaï traditionnel au lait crémeux, doux et épicé.")]]]],
+t3:[["g5",[["Mélie’s Vainilla","#e6b45a",D("3 muffins clásicos de vainilla.","3 classic vanilla muffins.","3 muffins classiques à la vanille.")],["Mélie’s Chocolate","#5a2e20",D("3 muffins clásicos de chocolate.","3 classic chocolate muffins.","3 muffins classiques au chocolat.")],["Mélie Box","#c98a4a",D("Muffins artesanales en pack de 4, 6 o 12 piezas.","Handmade muffins in packs of 4, 6 or 12.","Muffins artisanaux en box de 4, 6 ou 12."),0,0,"#3a3a8a"]]]]};
+const G=["linear-gradient(160deg,#d9a0b0,#8a5a6a)","linear-gradient(160deg,#6b4a3a,#2a1a18)","linear-gradient(160deg,#e8c27a,#9a4a2a)","linear-gradient(160deg,#e58aa0,#7a1a3b)"];
+
+const mu=(x,y,s,c,t)=>`<use href="#sh" x="${x}" y="${y}" width="${s}" height="${s}" style="color:${c};--tp:${t}"/>`;
+const sd=(cx,cy,rx,ry)=>`<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="#000" opacity=".35" filter="url(#bq)"/>`;
+const CY=[["#e6b45a","#3a1c12"],["#c98a4a","#3a3a8a"],["#5a2e20","#e8c09a"],["#d9a35c","#c4284a"],["#a9c26b","#6f8a2f"],["#f0cf63","#2a2a3a"]];
+let tray='';for(let r=0;r<4;r++)for(let c=0;c<3;c++){const k=CY[(r*3+c)%6];tray+=mu(18+c*90+(r%2)*8,48+r*78,78,k[0],k[1])}
+const SCN=[
+`<rect width="300" height="400" fill="#4a3226"/><path d="M0 95h300M0 200h300M0 305h300" stroke="#1e1008" opacity=".45" stroke-width="3"/><g transform="rotate(-8 150 150)"><rect x="46" y="64" width="196" height="156" rx="6" fill="#f6d9e0"/><path d="M72 108c20-14 30 8 50-6s30 6 62-4M72 140c25-10 35 8 55-4s40 6 72-2M72 172c20-8 40 6 62-3" stroke="#e0508a" stroke-width="3" fill="none" stroke-linecap="round"/></g>${sd(110,350,90,12)}${mu(40,236,140,"#c98a4a","#3a1c12")}${mu(150,270,120,"#5a2e20","#e8c09a")}`,
+`<rect width="300" height="400" fill="#6d7276"/><circle cx="50" cy="60" r="80" fill="#b9c0c3" opacity=".55" filter="url(#bq)"/><circle cx="260" cy="320" r="70" fill="#8a9296" opacity=".6" filter="url(#bq)"/>${sd(150,372,70,10)}<path d="M158 70l24-62" stroke="#f3f3f3" stroke-width="9" stroke-linecap="round"/><use href="#cp" x="68" y="62" width="170" height="300" style="color:#7fb83a"/>`,
+`<rect width="300" height="400" fill="#7a5030"/><path d="M0 70h300M0 180h300M0 290h300M0 380h300" stroke="#3a2010" opacity=".4" stroke-width="3"/><g transform="rotate(14 200 120)"><rect x="138" y="40" width="124" height="156" rx="6" fill="#5a1a4a"/><rect x="164" y="74" width="72" height="72" fill="#f6efe6"/><path d="M172 82h14v14h-14zM214 82h14v14h-14zM172 124h14v14h-14zM196 104h16v16h-16z" fill="#3a1030"/></g><rect x="150" y="282" width="112" height="84" rx="8" fill="#8fd3ee" transform="rotate(-10 205 324)"/>${sd(100,330,80,12)}${mu(10,150,170,"#d9a35c","#c4284a")}`,
+`<rect width="300" height="400" fill="#d6cdca"/><circle cx="150" cy="276" r="140" fill="#dca6ae"/><rect x="70" y="222" width="170" height="140" fill="#26262f" transform="rotate(-18 155 292)"/>${sd(150,350,60,10)}${mu(86,196,132,"#f4a3c0","#c4284a")}<rect x="108" y="14" width="86" height="118" rx="16" fill="#c4b0e6"/><ellipse cx="151" cy="24" rx="43" ry="11" fill="#efe6fa"/>`,
+`<rect width="300" height="400" fill="#38383b"/><g transform="rotate(-5 150 200)"><rect x="6" y="30" width="288" height="350" rx="6" fill="#6d6d70"/>${tray}</g>`,
+`<rect width="300" height="400" fill="#7a1230"/><path d="M0 0h300v126c0 30-34 32-40 6-8 46-52 50-60 6-8 42-52 44-60-6-8 40-48 40-56-4-10 24-84 22-84-8z" fill="#f6e8c8"/><path d="M-10 150c70-50 140 40 310-24" stroke="#f6e8c8" stroke-width="16" fill="none" stroke-linecap="round"/><ellipse cx="150" cy="410" rx="150" ry="70" fill="#e0a040"/><ellipse cx="250" cy="330" rx="40" ry="60" fill="#e8b868" opacity=".8" filter="url(#bq)"/>`];
+const SC=i=>'<svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" class="sc">'+SCN[i%6]+'</svg>';
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+let L=(function(){try{return localStorage.getItem('lang')}catch(e){return null}})()||(navigator.language||'es').slice(0,2),TAB='t1',S=0;
+function setL(l){if(!T[l])l='es';L=l;try{localStorage.setItem('lang',l)}catch(e){}
+ document.documentElement.lang=l;
+ $$('[data-i]').forEach(e=>{const v=T[l][e.dataset.i];if(v!==undefined)e.innerHTML=v});
+ $$('[data-lang] button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));render();slide();clock()}
+function render(){
+ $('#tabs').innerHTML=['t1','t2','t3'].map(k=>`<button data-t="${k}" class="${k===TAB?'on':''}">${T[L][k]}</button>`).join('');
+ $('#list').className=TAB==='t1'?'':'cols2';$('#list').innerHTML=M[TAB].map(([g,its])=>`<div class="grp"><h3><span class="out">${T[L][g]}</span><small>${String(its.length).padStart(2,'0')}</small></h3><ul>${its.map(i=>`<li><svg class="sh${g==='g3'||g==='g4'?' up':''}" style="color:${i[1]};--tp:${i[5]||'rgba(0,0,0,.22)'}"><use href="#${g==='g3'?'cf':g==='g4'?'cp':'sh'}"/></svg><div><h4>${i[0]}${i[3]?`<span class="tg">${T[L].bs}</span>`:''}</h4>${i[2][L]?`<p>${i[2][L]}</p>`:''}${i[4]?`<span class="nut">◌ ${T[L].nut}</span>`:''}</div></li>`).join('')}</ul></div>`).join('')}
+function slide(){$('#sl').innerHTML=T[L]['sl'+S];$('#cnt').textContent='0'+(S+1)+' / 04';
+ [0,1,2].forEach(k=>{$('#c'+k).innerHTML=SC(S+k)})}
+function clock(){const t=new Intl.DateTimeFormat(L==='en'?'en-GB':L,{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Paris'}).format(new Date());$('#clk').textContent='☾ '+T[L].clk.replace('{t}',t)}
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b){TAB=b.dataset.t;render()}});
+$$('[data-lang]').forEach(p=>p.addEventListener('click',e=>{const b=e.target.closest('button');if(b)setL(b.dataset.l)}));
+$('#nx').onclick=()=>{S=(S+1)%4;slide()};$('#pv').onclick=()=>{S=(S+3)%4;slide()};
+const ov=$('#ov'),bg=$('#bg');
+bg.onclick=()=>{ov.classList.toggle('open');bg.classList.toggle('x',ov.classList.contains('open'));$('#nav').classList.add('lt');document.body.style.overflow=ov.classList.contains('open')?'hidden':'';nv()};
+ov.addEventListener('click',e=>{if(e.target.closest('a')){ov.classList.remove('open');bg.classList.remove('x');document.body.style.overflow=''}});
+function nv(){const n=$('#nav');if(ov.classList.contains('open')){n.classList.add('lt');return}
+ for(const s of $$('[data-nav]')){const r=s.getBoundingClientRect();if(r.top<=50&&r.bottom>50){n.classList.toggle('lt',s.dataset.nav==='lt');return}}}
+addEventListener('scroll',nv,{passive:true});
+$('#wm').innerHTML=Array(140).fill('<span>Mélie</span>').join('');
+const bn=$('#bn');function px(){const r=bn.parentElement.getBoundingClientRect();bn.style.transform='translate3d(0,'+(-(r.top+r.height/2-innerHeight/2)/innerHeight*8).toFixed(2)+'%,0)'}addEventListener('scroll',px,{passive:true});px();$$('.igs div').forEach((d,i)=>{d.innerHTML=SC(i)});$('.ph').insertAdjacentHTML('afterbegin',SC(3));setInterval(clock,30000);setL(L);nv();
+</script>
+</body>
+</html>
