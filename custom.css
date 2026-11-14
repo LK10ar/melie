@@ -170,3 +170,9 @@ img.sh.cup{background:none;border-radius:12px}         /* gobelets transparents 
 .mkw{overflow:visible;background:none;border:0}
 .mkp{position:absolute;left:0;top:0;transform:translate(-50%,-80%);font-size:2.4rem;line-height:1;color:#fff;white-space:nowrap;text-shadow:0 0 8px #6b0a2c,0 2px 0 #6b0a2c}
 .mkp:after{content:"";display:block;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid #6b0a2c;margin:6px auto 0}
+
+/* ---------- Rose plus foncé pour les petits textes (BEST SELLER, FRUITS À COQUE, compteur) ---------- */
+:root{--pkd:#d6347f} /* le rose foncé : change cette valeur pour l'éclaircir ou le foncer */
+.tg{color:var(--pkd);font-weight:600}
+.nut{color:var(--pkd);font-weight:600}
+.grp h3 small{color:var(--pkd)}
