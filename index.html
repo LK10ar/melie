@@ -199,12 +199,14 @@ const IMG={
  "Mélie’s Chocolate":"img/Muffin chocolat gourmand Mélie.png",
  "Mélie Box":"img/Coffret gourmand de Mélie.png"
 };
+const NFR={"Vainilla":"Vanille","Chocolate":"Chocolat","Chips de chocolate":"Chips de chocolat","Arándanos":"Myrtille","Frambuesa":"Framboise","Limón y amapola":"Citron et pavot","Pistacho":"Pistache","Plátano y nuez":"Banane et noix","Zanahoria":"Carotte","Capuchino":"Cappuccino","Thai Tea Latte":"Thé thaï latte","Mélie’s Vainilla":"Mélie Vanille","Mélie’s Chocolate":"Mélie Chocolat","Mélie Box":"Coffret Mélie"};
+const nm=i=>L==='fr'?(NFR[i[0]]||i[0]):i[0]; // noms affichés en français quand la langue est FR
 const ico=(i,g)=>IMG[i[0]]
- ?`<img class="sh${g==='g4'?' cup':''}" src="${encodeURI(IMG[i[0]])}" alt="${i[0]}" loading="lazy">`
+ ?`<img class="sh${g==='g4'?' cup':''}" src="${encodeURI(IMG[i[0]])}" alt="${nm(i)}" loading="lazy">`
  :`<svg class="sh${g==='g3'||g==='g4'?' up':''}" style="color:${i[1]};--tp:${i[5]||'rgba(0,0,0,.22)'}"><use href="#${g==='g3'?'cf':g==='g4'?'cp':'sh'}"/></svg>`;
 function render(){
  $('#tabs').innerHTML=['t1','t2','t3'].map(k=>`<button data-t="${k}" class="${k===TAB?'on':''}">${T[L][k]}</button>`).join('');
- $('#list').className=TAB==='t1'?'':'cols2';$('#list').innerHTML=M[TAB].map(([g,its])=>`<div class="grp"><h3><span class="out">${T[L][g]}</span><small>${String(its.length).padStart(2,'0')}</small></h3><ul>${its.map(i=>`<li>${ico(i,g)}<div><h4>${i[0]}${i[3]?`<span class="tg">${T[L].bs}</span>`:''}</h4>${i[2][L]?`<p>${i[2][L]}</p>`:''}${i[4]?`<span class="nut">◌ ${T[L].nut}</span>`:''}</div></li>`).join('')}</ul></div>`).join('')}
+ $('#list').className=TAB==='t1'?'':'cols2';$('#list').innerHTML=M[TAB].map(([g,its])=>`<div class="grp"><h3><span class="out">${T[L][g]}</span><small>${String(its.length).padStart(2,'0')}€</small></h3><ul>${its.map(i=>`<li>${ico(i,g)}<div><h4>${nm(i)}${i[3]?`<span class="tg">${T[L].bs}</span>`:''}</h4>${i[2][L]?`<p>${i[2][L]}</p>`:''}${i[4]?`<span class="nut">◌ ${T[L].nut}</span>`:''}</div></li>`).join('')}</ul></div>`).join('')}
 function slide(){$('#sl').innerHTML=T[L]['sl'+S];$('#cnt').textContent='0'+(S+1)+' / 04';
  [0,1,2].forEach(k=>{$('#c'+k).innerHTML=SC(S+k)})}
 function clock(){const t=new Intl.DateTimeFormat(L==='en'?'en-GB':L,{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Paris'}).format(new Date());$('#clk').textContent='☾ '+T[L].clk.replace('{t}',t)}
