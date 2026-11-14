@@ -148,6 +148,21 @@ repeating-linear-gradient(90deg,transparent 0 92px,#8b1c3c 92px 100px),repeating
 .pc img,.igs div img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .cb .bn img{width:100%;height:100%;object-fit:cover;display:block}
 img.sh{object-fit:cover;border-radius:16px}
+
+/* ---- tailles images menu ---- */
+img.sh.cup{object-fit:contain;border-radius:12px}
+/* ---- vraie carte rose (Leaflet) ---- */
+.map{background:#ffc5e6}
+#lmap{position:absolute;inset:0;z-index:0;background:#ffc5e6;font-family:inherit}
+.map .zm,.map .hold,.map .ad{z-index:5}
+.map .zm span{cursor:pointer;user-select:none}
+.map .hold{opacity:0;transition:opacity .3s;pointer-events:none}.map .hold.show{opacity:1}
+.leaflet-tile-pane{mix-blend-mode:multiply;filter:grayscale(1) contrast(1.1)}
+.leaflet-labels-pane{mix-blend-mode:multiply;filter:grayscale(1) contrast(1.25)}
+.leaflet-container .leaflet-control-attribution{background:rgba(255,255,255,.55);font:500 9px var(--m);color:#5a0a26}
+.mkw{overflow:visible;background:none;border:0}
+.mkp{position:absolute;left:0;top:0;transform:translate(-50%,-80%);font-size:2.4rem;line-height:1;color:#fff;white-space:nowrap;text-shadow:0 0 8px #6b0a2c,0 2px 0 #6b0a2c}
+.mkp:after{content:"";display:block;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid #6b0a2c;margin:6px auto 0}
 </style>
 </head>
 <body>
@@ -170,7 +185,7 @@ img.sh{object-fit:cover;border-radius:16px}
 </div></div>
 
 <div class="hero" id="top" data-nav="lt"><div class="card">
-  <img class="himg" src="img/Assortiment%20de%20muffins%20M%C3%A9lie%20aux%20fruits%20rouges.png" alt="Muffins artisanaux Mélie">
+  <img class="himg" src="img/Muffin%20et%20boisson%20glac%C3%A9e%20M%C3%A9lie.png" alt="Muffins artisanaux Mélie">
   <div class="pill" data-lang><button data-l="es">ES</button><button data-l="en">EN</button><button data-l="fr">FR</button></div>
   <span class="rate" data-i="rate"></span>
   <h1><span class="out" data-i="h1a"></span><br><span data-i="h1b"></span></h1>
@@ -240,9 +255,11 @@ img.sh{object-fit:cover;border-radius:16px}
   <div class="eb l" style="color:#f58aa8" data-i="v_eye"></div>
   <h2><span class="out" data-i="v_a"></span><br><span class="out" data-i="v_b"></span> <em data-i="v_c"></em></h2>
   <div class="cg">
-    <div class="map"><i style="left:16%;top:18%">Quai de la Douane</i><i style="left:46%;top:19%">Rue Fernand Philippart</i><i style="left:62%;top:42%">Place du Parlement</i><i style="left:60%;top:66%">BORDEAUX</i><i style="left:6%;top:56%">Rue Saint-Rémi</i><i style="left:84%;top:80%">Tram · Bourse</i>
-      <div class="zm"><span>+</span><span>−</span><span>⌖</span></div><span class="mk script">Mélie</span><span class="hold" data-i="hold"></span>
-      <div class="ad"><b>Place de la Bourse<br>33000 Bordeaux</b><a href="#" data-i="v_map"></a></div></div>
+    <div class="map" id="map">
+      <div id="lmap"></div>
+      <div class="zm"><span id="zin">+</span><span id="zout">−</span><span id="zloc">⌖</span></div>
+      <span class="hold" id="hold" data-i="hold"></span>
+      <div class="ad"><b>Place de la Bourse<br>33000 Bordeaux</b><a href="https://www.google.com/maps/search/?api=1&query=Place+de+la+Bourse+33000+Bordeaux" target="_blank" rel="noopener" data-i="v_map"></a></div></div>
     <div class="info"><dl>
       <dt data-i="d2"></dt><dd data-i="hours2"></dd>
       <dt data-i="d3"></dt><dd>+33 6 00 00 00 00</dd>
@@ -254,6 +271,8 @@ img.sh{object-fit:cover;border-radius:16px}
   <div class="ft"><span data-i="copy"></span><nav><a href="#" data-i="priv"></a><a href="#" data-i="terms"></a></nav></div>
 </section>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 const T={
 es:{nav:"Navegar",m1:"Carta",m2:"Catering",m3:"Visítanos",contact:"Contacto",find:"Encuéntranos",hrs:"Horario",hours2:"Lun–Mar · Cerrado<br>Mié–Dom · 15:00–20:30",cap:"Recién horneado cada mañana",clk:"Son las {t} en Burdeos",made:"Hecho en Burdeos",
@@ -303,10 +322,10 @@ const SCN=[
 `<rect width="300" height="400" fill="#d6cdca"/><circle cx="150" cy="276" r="140" fill="#dca6ae"/><rect x="70" y="222" width="170" height="140" fill="#26262f" transform="rotate(-18 155 292)"/>${sd(150,350,60,10)}${mu(86,196,132,"#f4a3c0","#c4284a")}<rect x="108" y="14" width="86" height="118" rx="16" fill="#c4b0e6"/><ellipse cx="151" cy="24" rx="43" ry="11" fill="#efe6fa"/>`,
 `<rect width="300" height="400" fill="#38383b"/><g transform="rotate(-5 150 200)"><rect x="6" y="30" width="288" height="350" rx="6" fill="#6d6d70"/>${tray}</g>`,
 `<rect width="300" height="400" fill="#7a1230"/><path d="M0 0h300v126c0 30-34 32-40 6-8 46-52 50-60 6-8 42-52 44-60-6-8 40-48 40-56-4-10 24-84 22-84-8z" fill="#f6e8c8"/><path d="M-10 150c70-50 140 40 310-24" stroke="#f6e8c8" stroke-width="16" fill="none" stroke-linecap="round"/><ellipse cx="150" cy="410" rx="150" ry="70" fill="#e0a040"/><ellipse cx="250" cy="330" rx="40" ry="60" fill="#e8b868" opacity=".8" filter="url(#bq)"/>`];
-const CAR=["img/Muffin aux myrtilles signé Mélie.png","img/Café glacé Mélie au lait tourbillonnant.png","img/Coffret gourmand de Mélie.png","img/Gobelet glacé matcha marbré Mélie.png","img/Muffin chocolat gourmand Mélie.png","img/Toast au matcha et chai chez Mélie.png"];
-const IGP=["img/Muffin pistache et chai latte mousseux.png","img/cafe-coeur.jpg","img/Muffin banane, noix et cannelle.png","img/Latté matcha berry Mélie.png","img/Muffin aux carottes « Mélie ».png","img/Cupcake citron pavot Mélie.png"];
-const SC=i=>`<img class="sc" src="${encodeURI(CAR[i%6])}" alt="" loading="lazy">`;
-const SI=i=>`<img class="sc" src="${encodeURI(IGP[i%6])}" alt="" loading="lazy">`;
+const CAR=["img/Muffin pistache et chai latte mousseux.png","img/Assortiment de muffins Mélie aux fruits rouges.png","img/cafe-coeur.jpg","img/Toast au matcha et chai chez Mélie.png"]; // carrousel : 4 slides, pas d'autre photo
+const IGP=["img/Muffin pistache et chai latte mousseux.png","img/cafe-coeur.jpg","img/Latte matcha glacé Mélie♡.png","img/Latté matcha berry Mélie.png","img/Toast au matcha et chai chez Mélie.png","img/Cupcake citron pavot Mélie.png"]; // « Regarde ce qui est en train de cuire »
+const SC=i=>`<img class="sc" src="${encodeURI(CAR[i%CAR.length])}" alt="" loading="lazy">`;
+const SI=i=>`<img class="sc" src="${encodeURI(IGP[i%IGP.length])}" alt="" loading="lazy">`;
 const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
 let L=(function(){try{return localStorage.getItem('lang')}catch(e){return null}})()||(navigator.language||'es').slice(0,2),TAB='t1',S=0;
 function setL(l){if(!T[l])l='es';L=l;try{localStorage.setItem('lang',l)}catch(e){}
@@ -329,12 +348,16 @@ const IMG={
  "Americano":"img/americano.jpg",
  "Coco Matcha":"img/Latté matcha berry Mélie.png",
  "Matcha Latte":"img/Gobelet glacé matcha marbré Mélie.png",
+ "Ube Latte":"img/Latté matcha berry Mélie.png",
+ "Chai Latte":"img/Café glacé Mélie au lait tourbillonnant.png",
+ "Ube Matcha Latte":"img/Gobelet glacé matcha marbré Mélie.png",
+ "Thai Tea Latte":"img/Café glacé Mélie gourmand et givré.png",
  "Mélie’s Vainilla":"img/Cupcake vanille décoré Mélie.png",
  "Mélie’s Chocolate":"img/Muffin chocolat gourmand Mélie.png",
  "Mélie Box":"img/Coffret gourmand de Mélie.png"
 };
 const ico=(i,g)=>IMG[i[0]]
- ?`<img class="sh" src="${encodeURI(IMG[i[0]])}" alt="${i[0]}" loading="lazy">`
+ ?`<img class="sh${g==='g4'?' cup':''}" src="${encodeURI(IMG[i[0]])}" alt="${i[0]}" loading="lazy">`
  :`<svg class="sh${g==='g3'||g==='g4'?' up':''}" style="color:${i[1]};--tp:${i[5]||'rgba(0,0,0,.22)'}"><use href="#${g==='g3'?'cf':g==='g4'?'cp':'sh'}"/></svg>`;
 function render(){
  $('#tabs').innerHTML=['t1','t2','t3'].map(k=>`<button data-t="${k}" class="${k===TAB?'on':''}">${T[L][k]}</button>`).join('');
@@ -353,6 +376,27 @@ function nv(){const n=$('#nav');if(ov.classList.contains('open')){n.classList.ad
 addEventListener('scroll',nv,{passive:true});
 $('#wm').innerHTML=Array(140).fill('<span>Mélie</span>').join('');
 const bn=$('#bn');function px(){const r=bn.parentElement.getBoundingClientRect();bn.style.transform='translate3d(0,'+(-(r.top+r.height/2-innerHeight/2)/innerHeight*8).toFixed(2)+'%,0)'}addEventListener('scroll',px,{passive:true});px();$$('.igs div').forEach((d,i)=>{d.innerHTML=SI(i)});$('.ph').insertAdjacentHTML('afterbegin',SC(3));setInterval(clock,30000);setL(L);nv();
+
+/* ---- carte Bordeaux, Place de la Bourse ---- */
+(function(){
+ if(!window.L)return;
+ const C=[44.84131,-0.56997];
+ const m=L.map('lmap',{center:C,zoom:16,minZoom:12,maxZoom:18,zoomControl:false,scrollWheelZoom:false,dragging:!L.Browser.mobile,tap:false});
+ m.attributionControl.setPrefix(false);
+ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:19,attribution:'© OpenStreetMap · © CARTO'}).addTo(m);
+ m.createPane('labels').style.zIndex=350;
+ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:19,pane:'labels'}).addTo(m);
+ L.marker(C,{keyboard:false,icon:L.divIcon({className:'mkw',html:'<span class="mkp script">Mélie</span>',iconSize:[0,0]})}).addTo(m);
+ const el=document.getElementById('map'),hold=document.getElementById('hold');let ht,lock=0;
+ el.addEventListener('wheel',e=>{
+  if(e.ctrlKey||e.metaKey){e.preventDefault();const n=Date.now();if(n-lock>220){lock=n;m.setZoom(m.getZoom()+(e.deltaY<0?1:-1))}}
+  else{hold.classList.add('show');clearTimeout(ht);ht=setTimeout(()=>hold.classList.remove('show'),1200)}
+ },{passive:false});
+ document.getElementById('zin').onclick=()=>m.zoomIn();
+ document.getElementById('zout').onclick=()=>m.zoomOut();
+ document.getElementById('zloc').onclick=()=>m.setView(C,16);
+ window.addEventListener('load',()=>m.invalidateSize());
+})();
 </script>
 </body>
 </html>
