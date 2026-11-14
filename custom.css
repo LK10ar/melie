@@ -176,3 +176,8 @@ img.sh.cup{background:none;border-radius:12px}         /* gobelets transparents 
 .tg{color:var(--pkd);font-weight:600}
 .nut{color:var(--pkd);font-weight:600}
 .grp h3 small{color:var(--pkd)}
+
+/* ---------- Titres de sections du menu (Classiques, Spéciales, Café de spécialité, Boissons premium, Mélie Packs) ---------- */
+.grp h3{font-size:clamp(2rem,4.2vw,3.2rem)} /* taille des titres roses : augmente/diminue ces valeurs */
+.grp h3 .out{-webkit-text-stroke:2px var(--pk)}
+.grp h3 small{font-size:.8rem}
