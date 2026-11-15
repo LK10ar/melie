@@ -220,3 +220,11 @@ img.sh.cup{background:none;border-radius:12px}         /* gobelets transparents 
  .nav .script{font-size:2.5rem}
  .pill button{padding:8px 11px;letter-spacing:.12em}
 }
+
+/* ---------- Barre de défilement SANS flèches ---------- */
+/* Chrome ignore ::-webkit-scrollbar-button quand scrollbar-width / scrollbar-color sont définis (flèches natives) :
+   on les remet à "auto" pour Chrome/Edge/Safari, et on les garde seulement pour Firefox. */
+html{scrollbar-width:auto;scrollbar-color:auto}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-button,::-webkit-scrollbar-button:single-button,::-webkit-scrollbar-button:vertical:start:decrement,::-webkit-scrollbar-button:vertical:end:increment{display:none;width:0;height:0;background:transparent}
+@supports not selector(::-webkit-scrollbar){html{scrollbar-width:thin;scrollbar-color:#63001e #f6efe6}}
