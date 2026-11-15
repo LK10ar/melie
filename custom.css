@@ -164,7 +164,7 @@ img.sh.cup{background:none;border-radius:12px}         /* gobelets transparents 
 .map .zm span{cursor:pointer;user-select:none}
 .map .hold{opacity:0;transition:opacity .3s;pointer-events:none}
 .map .hold.show{opacity:1}
-.leaflet-tile-pane{mix-blend-mode:multiply;filter:grayscale(1) contrast(1.1)}
+.leaflet-tile-pane{mix-blend-mode:multiply;filter:grayscale(1) contrast(1.25)} /* carte OpenStreetMap passée en rose */
 .leaflet-labels-pane{mix-blend-mode:multiply;filter:grayscale(1) contrast(1.25)}
 .leaflet-container .leaflet-control-attribution{background:rgba(255,255,255,.55);font:500 9px var(--m);color:#5a0a26}
 .mkw{overflow:visible;background:none;border:0}
