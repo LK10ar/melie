@@ -218,6 +218,7 @@ img.sh.cup{background:none;border-radius:12px}         /* gobelets transparents 
  .tg{white-space:nowrap}
  h3,h4{line-height:1.15}
  .nav .script{font-size:2.5rem}
+ .gt svg.kitty{width:min(190px,52vw);margin-bottom:16px} /* chat plus petit sur téléphone */
  .pill button{padding:8px 11px;letter-spacing:.12em}
 }
 
