@@ -164,7 +164,6 @@ img.sh.cup{background:none;border-radius:12px}         /* gobelets transparents 
 .map .zm span{cursor:pointer;user-select:none}
 .map .hold{opacity:0;transition:opacity .3s;pointer-events:none}
 .map .hold.show{opacity:1}
-.leaflet-tile-pane{mix-blend-mode:multiply;filter:grayscale(1) contrast(1.25)} /* carte OpenStreetMap passée en rose */
 .leaflet-labels-pane{mix-blend-mode:multiply;filter:grayscale(1) contrast(1.25)}
 .leaflet-container .leaflet-control-attribution{background:rgba(255,255,255,.55);font:500 9px var(--m);color:#5a0a26}
 .mkw{overflow:visible;background:none;border:0}
@@ -206,4 +205,18 @@ img.sh.cup{background:none;border-radius:12px}         /* gobelets transparents 
 @media(max-width:400px){
  .sh{flex-basis:96px;width:96px;height:96px}
  .info dd{font-size:.98rem;word-break:break-word}
+}
+
+/* ---------- Effet ROSE sur la carte (filtre sur les tuiles) ---------- */
+.leaflet-tile-pane{filter:grayscale(1) brightness(.8) sepia(1) hue-rotate(300deg) saturate(2.6)} /* change hue-rotate / saturate pour ajuster le rose */
+.map .zm,.map .hold,.map .ad{z-index:5}
+
+/* ---------- Mobile : titres qui se chevauchent + en-tête ---------- */
+@media(max-width:700px){
+ h2,h2 .out,h2 em{line-height:1.16!important}
+ .cat h2,.cat h2 *{line-height:1.28!important}
+ .tg{white-space:nowrap}
+ h3,h4{line-height:1.15}
+ .nav .script{font-size:2.5rem}
+ .pill button{padding:8px 11px;letter-spacing:.12em}
 }
