@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mélie — Pastelería de Muffins Artesanales en Burdeos</title>
+<title>Mélie — Pâtisserie de muffins artisanaux en bordeaux</title>
 <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;800&family=Outfit:wght@300;400;600;800&family=Inter:wght@500&family=JetBrains+Mono:wght@400;500&family=Yellowtail&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="custom.css">
@@ -217,7 +217,11 @@ const ov=$('#ov'),bg=$('#bg');
 bg.onclick=()=>{ov.classList.toggle('open');bg.classList.toggle('x',ov.classList.contains('open'));$('#nav').classList.add('lt');document.body.style.overflow=ov.classList.contains('open')?'hidden':'';nv()};
 ov.addEventListener('click',e=>{if(e.target.closest('a')){ov.classList.remove('open');bg.classList.remove('x');document.body.style.overflow=''}});
 function nv(){const n=$('#nav');if(ov.classList.contains('open')){n.classList.add('lt');return}
- for(const s of $$('[data-nav]')){const r=s.getBoundingClientRect();if(r.top<=50&&r.bottom>50){n.classList.toggle('lt',s.dataset.nav==='lt');return}}}
+ for(const s of $$('[data-nav]')){const r=s.getBoundingClientRect(),wt=s.querySelector(':scope>.wv.t'),wb=s.querySelector(':scope>.wv.b');
+  const t=r.top+(wt?wt.offsetHeight+10:0),b=r.bottom-(wb?wb.offsetHeight+10:0); // on tient compte des vagues crème en haut/bas des sections
+  if(t<=50&&b>50){n.classList.toggle('lt',s.dataset.nav==='lt');return}
+  if(r.top<=50&&r.bottom>50&&((wt&&t>50)||(wb&&b<=50))){n.classList.remove('lt');return} // logo sombre quand il passe sur une vague crème
+ }}
 addEventListener('scroll',nv,{passive:true});
 $('#wm').innerHTML=Array(140).fill('<span>Mélie</span>').join('');
 const bn=$('#bn');function px(){const r=bn.parentElement.getBoundingClientRect();bn.style.transform='translate3d(0,'+(-(r.top+r.height/2-innerHeight/2)/innerHeight*8).toFixed(2)+'%,0)'}addEventListener('scroll',px,{passive:true});px();$$('.igs div').forEach((d,i)=>{d.innerHTML=SI(i)});$('.ph').insertAdjacentHTML('afterbegin','<img src="'+encodeURI('img/Coffret gourmand de Mélie.png')+'" alt="" loading="lazy">');setInterval(clock,30000);setL(L);nv();
