@@ -229,9 +229,7 @@ const bn=$('#bn');function px(){const r=bn.parentElement.getBoundingClientRect()
  const C=[44.84131,-0.56997];
  const m=LF.map('lmap',{center:C,zoom:16,minZoom:12,maxZoom:18,zoomControl:false,scrollWheelZoom:false,dragging:!LF.Browser.mobile,tap:false});
  m.attributionControl.setPrefix(false);
- LF.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:19,attribution:'© OpenStreetMap · © CARTO'}).addTo(m);
- m.createPane('labels').style.zIndex=350;
- LF.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:19,pane:'labels'}).addTo(m);
+ LF.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© les contributeurs OpenStreetMap'}).addTo(m); // fond de carte gratuit, sans clé API
  LF.marker(C,{keyboard:false,icon:LF.divIcon({className:'mkw',html:'<span class="mkp script">Mélie</span>',iconSize:[0,0]})}).addTo(m);
  const el=document.getElementById('map'),hold=document.getElementById('hold');let ht,lock=0;
  el.addEventListener('wheel',e=>{
